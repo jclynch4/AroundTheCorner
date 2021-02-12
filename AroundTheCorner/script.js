@@ -9,7 +9,17 @@ con.connect(function(err) {
 if (err) throw err;  
 console.log("Connected!");  
 buyerid = getElementById("idBuyers").innerhtml
-var sql = "INSERT INTO Buyers (idBuyers, idCart, name, age, email, username, password, location, payment, admin) VALUES (buyerid, 'Ajeet Kumar', '27', 'Allahabad')";  
+name = getElementById("name").innerhtml
+age = getElementById("age").innerhtml
+email = getElementById("email").innerhtml
+username = getElementById("username").innerhtml
+password = getElementById("password").innerhtml
+location = getElementById("location").innerhtml
+admin = getElementById("admin").innerhtml
+
+
+
+var sql = "INSERT INTO Buyers (idBuyers, name, age, email, username, password, location, payment, admin) VALUES (buyerid, name, age, email, username, password, location, admin)";  
 con.query(sql, function (err, result) {  
 if (err) throw err;  
 console.log("1 record inserted");  
