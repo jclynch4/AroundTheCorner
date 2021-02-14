@@ -10,7 +10,7 @@
   <body>
 
     <div id="wrapper">
-    <script src="script.js"></script>
+    
 
     <header>
       <a href="index.html">
@@ -28,10 +28,57 @@
       <label for="password">Password: </label><input type="password" id="password">
       <label for="location">Location: </label><input type="text" id="location">
       <label for="admin">Admin Code: </label><input type="text" id="admin">
-      <div id="center"><button id="createAccount">Create Account</button></div>
+      <div id="center"><button onclick="createAccount()" id="createAccount">Create Account</button></div>
 
     </nav>
+    <script src="https://mysqljs.com/mysql.js" type="text/javascript"></script>
+    <script>
+      
+      function createAccount() { 
+        console.log("here");
+        let name = document.getElementById("name").value
+        let age = document.getElementById("age").value
+        let email = document.getElementById("email").value
+        let username = document.getElementById("username").value
+        let password = document.getElementById("password").value
+        let location = document.getElementById("location").value
+        let admin = "False" //document.getElementById("admin").value
 
+        let values = "\"" + name + "\", \"" + age + "\", \"" + email + "\", \"" + username + "\", \"" + password + "\", \"" + location + "\", \"" + admin + "\"";
+        console.log(values);
+        let sqlSelect = "SELECT * FROM Buyers WHERE email like \"" + email + "\" OR username like \"" + username +"\";"
+        let sqlStmt = "INSERT INTO Buyers (name, age, email, username, password, location, admin) VALUES (" + values + ");";
+        console.log(sqlStmt);
+            MySql.Execute( 
+              "107.180.1.16", 
+              "group62021",
+              "2021group6",
+              "group62021",
+
+              sqlSelect,
+              function (data){
+                console.log(data);
+                console.log("result length: "+ data.Result.length);
+                if (data.Result.length < 1){
+                  insertsql();
+                }
+                else {
+                 console.log('hi there');
+                }
+              }
+              )
+            function insertsql(){
+              MySql.Execute(
+                "107.180.1.16", 
+                "group62021",
+                "2021group6",
+                "group62021",
+
+                sqlStmt
+              )
+      }
+          }
+    </script>
   </body>
 
 </html>
