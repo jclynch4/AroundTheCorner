@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <title>repl.it</title>
+    <link href="style.css" rel="stylesheet" type="text/css" />
+  </head>
+
+  <body>
+    <div id="wrapper">
+
+    <header>
+      <a href="index.html">
+        <h1>Around The Corner</h1>
+      </a>
+    </header>
+
+
+    <nav>
+      <p>Type in the information below to delete the associated account:</p>
+      <label for="username">Username or Email: </label><input type="text" id="username">
+      <label for="password">Password: </label><input type="password" id="password">
+      <div id="center"><button onclick = "login()" id="deleteAccount">Delete Account Account</button></div>
+    </nav>
+
+    <script src="https://mysqljs.com/mysql.js" type="text/javascript"></script>
+    <script>
+      
+      function login() { 
+        console.log("here");
+        let username = document.getElementById("username").value
+        let password = document.getElementById("password").value
+        let idBuyers = ""
+
+        let sqlSelect = "SELECT idBuyers FROM Buyers WHERE email like \"" + username + "\" AND username like \"" + username +"\" AND password like \"" + password +"\";";
+        
+            MySql.Execute( 
+              "107.180.1.16", 
+              "group62021",
+              "2021group6",
+              "group62021",
+
+              sqlSelect,
+              function (data){
+                console.log(data);
+                if (data.Result.length != 0){
+                  idBuyers = data.Result[0].idBuyers;
+                  console.log(idBuyers);
+                  
+                  writeCookie();
+                }
+                else {
+                 console.log('hi there');
+
+                }
+              }
+              )
+              function writeCookie() {
+                         var now = new Date();
+                         now.setHours( now.getHours() + 1 );
+                         cookievalue = idBuyers + ";"
+                         console.log(now);
+                         document.cookie = "name=" + cookievalue + ", expires=" + now.toUTCString() + ";"
+                         console.log ("Setting Cookies : " + "name=" + cookievalue );
+
+                         var allcookies = document.cookie;
+                         console.log(allcookies);
+                         ReadCookie();
+                      }
+              function ReadCookie() {
+               var allcookies = document.cookie;
+               console.log("All Cookies : " + allcookies );
+               
+               // Get all the cookies pairs in an array
+               cookiearray = allcookies.split(';');
+               console.log(cookiearray);
+               // Now take key value pair out of this array
+               for(var i=0; i<cookiearray.length; i++) {
+                  name = cookiearray[i].split('=')[0];
+                  value = cookiearray[i].split('=')[1];
+                  console.log("Key is : " + name + " and Value is : " + value);
+               }
+            }
+              }
+    </script>        
+  </body>
+</html>
