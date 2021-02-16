@@ -11,34 +11,37 @@ function initMap() {
         const map = new google.maps.Map(document.getElementById("map"), {
           zoom: 11,
           center: tempe,
-          mapTypeId: google.maps.MapTypeId.SATELLITE
         });
         // The marker, positioned at tempe
         const marker = new google.maps.Marker({
           position: HHHHH,
           map: map,
           label: 'Happy Healthy High Horny Herbs'
-          
+
 
         });
         const marker2 = new google.maps.Marker({
           position: changingHands,
           map: map,
+          label: 'Changing Hands Bookstore'
 
         });
         const marker3 = new google.maps.Marker({
           position: buffaloExchange,
           map: map,
+          label: 'Buffalo Exchange'
 
         });
         const marker4 = new google.maps.Marker({
           position: graciesThrift,
           map: map,
+          label: "'Gracie's Thrift Store'"
 
         });
         const marker5 = new google.maps.Marker({
           position: oldTownBooks,
           map: map,
+          label: 'Old Town Bookstore'
 
         });
         infoWindow = new google.maps.InfoWindow();
