@@ -11,11 +11,14 @@ function initMap() {
         const map = new google.maps.Map(document.getElementById("map"), {
           zoom: 11,
           center: tempe,
+          mapTypeId: google.maps.MapTypeId.SATELLITE
         });
         // The marker, positioned at tempe
         const marker = new google.maps.Marker({
           position: HHHHH,
           map: map,
+          label: 'Happy Healthy High Horny Herbs'
+          
 
         });
         const marker2 = new google.maps.Marker({
