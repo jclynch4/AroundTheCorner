@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <title>repl.it</title>
+    <link href="style.css" rel="stylesheet" type="text/css" />
+  </head>
+  <body>
+    <div id="wrapper">
+    <header>
+      <a href="index.html">
+        <h1>Around The Corner</h1>
+      </a>
+    </header>
+
+     <nav>
+
+      <label for="vendorid">Vendor ID: </label><input type="text" id="vendorid">
+      <label for="productid">Product ID: </label><input type="text" id="productid">
+      <label for="productName">Product Name: </label><input type="text" id="productName">
+      <label for="price">Price: </label><input type="text" id="price">
+      <label for="description">Product Description: </label><input type="text" id="description">
+      <label for="imageURL">Image URL: </label><input type="text" id="imageURL">
+      
+      <div id="center"><button onclick="addProduct()" id="addProduct">Add Product</button></div>
+
+    </nav>
+    <script src="https://mysqljs.com/mysql.js" type="text/javascript"></script>
+
+    <script>
+    function addProduct() { 
+        console.log("here");
+        let vendorid = document.getElementById("vendorid").value
+        let productid = document.getElementById("productid").value
+        let productName = document.getElementById("productName").value
+        let description = document.getElementById("description").value
+        let imageURL = document.getElementById("imageURL").value
+
+        let values = "\"" + vendorid + "\", \"" + productid + "\", \"" + productName + "\", \"" + description + "\", \"" + imageURL + "\"";
+
+        console.log(values);
+        let sqlSelect = "SELECT * FROM Products WHERE idProducts like \"" + productid + "\" OR name like \"" + productName +"\";"
+        let sqlStmt = "INSERT INTO Products (vendorid, productid, productName, description, imageURL) VALUES (" + values + ");";
+        console.log(sqlStmt);
+        
+        MySql.Execute("107.180.1.16", "group62021", "2021group6", "group62021", sqlSelect, function (data){
+                console.log(data);
+                console.log("result length: "+ data.Result.length);
+                if (data.Result.length < 1){
+                  insertsql();
+                }
+        }
+        )
+
+  </body>
+</html>
