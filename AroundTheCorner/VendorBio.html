@@ -5,7 +5,11 @@
 	<title>VendorBio.html</title>
 	<meta charset="UTF-8" />
 </head>
-
+<header>
+      <a href="index.html">
+        <h1>Around The Corner</h1>
+      </a>
+    </header>
 <body>
 	<h1>Vendor Bio</h1>
 	<nav>
@@ -70,9 +74,8 @@
         let values = "\"" + name + "\", \"" + location + "\", \"" + hours + "\", \"" + phone + "\", \"" + website + "\", \"" + bio + "\", \"" + password + "\"";
 
         console.log(values);
-        let sqlSelect = "SELECT * FROM Vendors WHERE name like \"" + name +";"
-        // let sqlStmt = "INSERT INTO Vendors (name, location, hours, phone, website, bio, password) VALUES (" + values + ");";
-        let sqlStmt = "INSERT INTO Vendors (name, location, hours, phone, website, bio, password) VALUES (\"1\", \"1\", \"1\", \"1\", \"1\", \"1\", \"1\");";
+        let sqlSelect = "SELECT * FROM Vendors WHERE name like \"" + name +"\";"
+        let sqlStmt = "INSERT INTO Vendors (name, location, hours, phone, website, bio, password) VALUES (" + values + ");";
 
         console.log(sqlStmt);
             MySql.Execute( 

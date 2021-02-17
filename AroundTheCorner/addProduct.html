@@ -16,11 +16,10 @@
 
      <nav>
 
-      <label for="productid">Product ID: </label><input type="text" id="productid">
-      <label for="productName">Product Name: </label><input type="text" id="productName">
       <label for="price">Price: </label><input type="text" id="price">
+      <label for="name">Product Name: </label><input type="text" id="name">
       <label for="description">Product Description: </label><input type="text" id="description">
-      <label for="imageURL">Image URL: </label><input type="text" id="imageURL">
+      <label for="image_url">Image URL: </label><input type="text" id="image_url">
       
       <div id="center"><button onclick="addProduct()" id="addProduct">Add Product</button></div>
 
@@ -30,24 +29,64 @@
     <script>
       function addProduct() { 
           console.log("here");
-          let productid = document.getElementById("productid").value
-          let productName = document.getElementById("productName").value
-          let description = document.getElementById("description").value
-          let imageURL = document.getElementById("imageURL").value
-          let values = "\"" + productid + "\", \"" + productName + "\", \"" + description + "\", \"" + imageURL + "\"";
-          console.log(values);
-          let sqlSelect = "SELECT * FROM Products WHERE idProducts like \"" + productid + "\" OR name like \"" + productName +"\";"
-          let sqlStmt = "INSERT INTO Products (vendorid, productid, productName, description, imageURL) VALUES (" + values + ");";
-          console.log(sqlStmt);
-          
-          MySql.Execute("107.180.1.16", "group62021", "2021group6", "group62021", sqlSelect, function (data){
-                  console.log(data);
-                  console.log("result length: "+ data.Result.length);
-                  if (data.Result.length < 1){
-                    insertsql();
-                  }
+          let idVendors = "";
+          var allcookies = document.cookie;
+          console.log("All Cookies : " + allcookies);
+         
+         // Get all the cookies pairs in an array
+         cookiearray = allcookies.split(';');
+         console.log(cookiearray);
+         // Now take key value pair out of this array
+         for(var i=0; i<cookiearray.length; i++) {
+            var key = cookiearray[i].split('=')[0];
+            var value = cookiearray[i].split('=')[1];
+            console.log("Key is : " + key + " and Value is : " + value);
+            idVendors = value;
           }
-          )
+
+          let price = document.getElementById("price").value;
+          let name = document.getElementById("name").value;
+          let description = document.getElementById("description").value;
+          let image_url = document.getElementById("image_url").value;
+
+          let values = "\"" + idVendors + "\", \"" + price + "\", \"" + name + "\", \"" + description + "\", \"" + image_url + "\"";
+          console.log(values);
+          let sqlSelect = "SELECT * FROM Products WHERE name like \"" + name + "\" AND idVendors like \"" + idVendors +"\";"
+          let sqlStmt = "INSERT INTO Products (idVendors, price, name, description, image_url) VALUES (" + values + ");";
+          
+          MySql.Execute(
+            "107.180.1.16",
+            "group62021",
+            "2021group6",
+            "group62021",
+
+            sqlSelect,
+
+            function (data){
+              console.log(data);
+
+              console.log("result length: "+ data.Result.length);
+              if (data.Result.length < 1){
+                insertsql();
+              }
+              else{
+                console.log("not quite");
+              }
+            }
+            )
+              function insertsql(){
+              MySql.Execute(
+                "107.180.1.16", 
+                "group62021",
+                "2021group6",
+                "group62021",
+
+                sqlStmt,
+                function(data){
+                  console.log(data);
+                }
+              )
+          }
       }
   </script>
   </body>

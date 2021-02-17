@@ -74,13 +74,7 @@
                   document.getElementById("password").value = data.Result[0].password;
                   document.getElementById("location").value = data.Result[0].location;
                   document.getElementById("admin").value = "False";
-                  if (data.Result.length < 1){
-                    insertsql();
-                  }
-                  else {
-                   console.log('hi there');
-                  }
-              }
+                }
               )
             }
             function updateAccount(){
