@@ -33,15 +33,50 @@
 
       </ul>
     </nav>
+    <div id="items">
+    </div> 
+    <br>
     <div id="map"></div>
     <script
       src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCn6Ge7JQ-51X6NMKRex4LnWLUvJLEFJnE&callback=initMap&libraries=&v=weekly"
       async
     ></script>
     <script src="map.js"></script>
+    <script src="https://mysqljs.com/mysql.js" type="text/javascript"></script>
+    <script type="text/javascript">
+      window.onload = function fill(){ 
+        let sqlStmt = "SELECT * FROM Products";
+            MySql.Execute( 
+              "107.180.1.16", 
+              "group62021",
+              "2021group6",
+              "group62021",
 
+              sqlStmt,
 
+              function(data) {
 
+                for (i=0; i<data.Result.length; i++) {
+                  
+                  var p = document.createElement("p");
+                  p.innerHTML = (data.Result[i].name) + " - $" + data.Result[i].price + "<br>" + data.Result[i].description + "<br>";
+                  
+                  var pic = document.createElement("img");
+                  pic.src = String(data.Result[i].image_url);
+                  p.appendChild(pic);
+
+                  document.getElementById("items").appendChild(p)
+                  
+                /*
+                  var dropdown = document.getElementById("DropDown");
+                  var opt = document.createElement("option"); 
+                  opt.text = (data.Result[i].MenuItem);
+                  opt.value = (data.Result[i].Price);
+                  dropdown.options.add(opt);*/
+                }
+              }
+            ) };
+    </script>
     </div>
       </body>
 
