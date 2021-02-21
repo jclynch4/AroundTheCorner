@@ -58,15 +58,17 @@
 
                 for (i=0; i<data.Result.length; i++) {
                   
-                  var p = document.createElement("p");
-                  p.innerHTML = (data.Result[i].name) + " - $" + data.Result[i].price + "<br>" + data.Result[i].description + "<br>";
+                  var a = document.createElement("a");
+                  a.href = "view_product.html";
+
+                  a.innerHTML = data.Result[i].name + " - $" + data.Result[i].price + "<br>" + data.Result[i].description + "<br>";
                   
                   var pic = document.createElement("img");
                   pic.src = String(data.Result[i].image_url);
-                  p.appendChild(pic);
+                  a.appendChild(pic);
 
-                  document.getElementById("items").appendChild(p)
-                  
+                  document.getElementById("items").appendChild(a);
+                 
                 /*
                   var dropdown = document.getElementById("DropDown");
                   var opt = document.createElement("option"); 

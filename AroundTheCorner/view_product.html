@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <title>repl.it</title>
+    <link href="style.css" rel="stylesheet" type="text/css" />
+  </head>
+  <body>
+    <div id="wrapper">
+    <header>
+      <a href="index.html">
+        <h1>Around The Corner</h1>
+      </a>
+    </header>
+
+     <nav>
+
+      <label for="price">Price: </label><input type="text" id="price">
+      <label for="name">Product Name: </label><input type="text" id="name">
+      <label for="description">Product Description: </label><input type="text" id="description">
+      <label for="image_url">Image URL: </label><input type="text" id="image_url">
+      
+      <div id="center"><button onclick="addProduct()" id="addProduct">Add Product</button></div>
+
+    </nav>
+    <script src="https://mysqljs.com/mysql.js" type="text/javascript"></script>
+
+    <script>
+      function addProduct() { 
+          console.log("here");
+          let idVendors = "";
+          var allcookies = document.cookie;
+          console.log("All Cookies : " + allcookies);
+         
+         // Get all the cookies pairs in an array
+         cookiearray = allcookies.split(';');
+         console.log(cookiearray);
+         // Now take key value pair out of this array
+         for(var i=0; i<cookiearray.length; i++) {
+            var key = cookiearray[i].split('=')[0];
+            var value = cookiearray[i].split('=')[1];
+            console.log("Key is : " + key + " and Value is : " + value);
+            idVendors = value;
+          }
+
+          let price = document.getElementById("price").value;
+          let name = document.getElementById("name").value;
+          let description = document.getElementById("description").value;
+          let image_url = document.getElementById("image_url").value;
+
+          let values = "\"" + idVendors + "\", \"" + price + "\", \"" + name + "\", \"" + description + "\", \"" + image_url + "\"";
+          console.log(values);
+          let sqlSelect = "SELECT * FROM Products WHERE name like \"" + name + "\" AND idVendors like \"" + idVendors +"\";"
+          let sqlStmt = "INSERT INTO Products (idVendors, price, name, description, image_url) VALUES (" + values + ");";
+          
+          MySql.Execute(
+            "107.180.1.16",
+            "group62021",
+            "2021group6",
+            "group62021",
+
+            sqlSelect,
+
+            function (data){
+              console.log(data);
+
+              console.log("result length: "+ data.Result.length);
+              if (data.Result.length < 1){
+                insertsql();
+              }
+              else{
+                console.log("not quite");
+              }
+            }
+            )
+              function insertsql(){
+              MySql.Execute(
+                "107.180.1.16", 
+                "group62021",
+                "2021group6",
+                "group62021",
+
+                sqlStmt,
+                function(data){
+                  console.log(data);
+                }
+              )
+          }
+      }
+  </script>
+  </body>
+</html>
