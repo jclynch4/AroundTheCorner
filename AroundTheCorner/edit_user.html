@@ -1,36 +1,66 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width">
-    <title>repl.it</title>
+    <title>Edit Account</title>
     <link href="style.css" rel="stylesheet" type="text/css" />
   </head>
 
-  <body>
-
-    <div id="wrapper">
-    
+  <body> 
 
     <header>
-      <a href="index.html">
-        <h1>Around The Corner</h1>
-      </a>
+      <img src="toplogo.png">
+      <div class="navigation">
+        <table>
+          <tr>
+              <td><a href="index.html">Home</a></td>
+          </tr>
+          <tr>
+              <td><a href="create_account.html">Create Account</a></td>
+          </tr>
+          <tr>
+              <td><a href="VendorBio.html">Create Vendor Account</a></td>
+          </tr>
+          <tr>
+              <td><a href="delete_account.htm">Delete Account</a></td>
+          </tr>
+          <tr>
+              <td><a href="login.html">Login</a></td>
+          </tr>
+          <tr>
+              <td><a href="edit_user.html">Edit A User Account</a></td>
+          </tr>
+          <tr>
+              <td><a href="addProduct.html">Add Product</a></td>
+          </tr>
+          <tr>
+              <td><a href="login_vendor.html">Log in as Vendor</a></td>
+          </tr>
+        </table>
+      </div>
     </header>
 
 
-     <nav>
+    <main>
 
-      <label for="fname">Name: </label><input type="text" id="name">
-      <label for="age">Age: </label><input type="text" id="age">
-      <label for="email">Email: </label><input type="text" id="email">
-      <label for="username">Username: </label><input type="text" id="username">
-      <label for="password">Password: </label><input type="password" id="password">
-      <label for="location">Location: </label><input type="text" id="location">
-      <label for="admin">Admin Code: </label><input type="text" id="admin">
-      <div id="center"><button onclick="updateAccount()" id="createAccount">Update Account</button></div>
+      <div class="title">
+        <h1>Around The Corner</h1>
+        <p id="description_one"> Make <strong>Any</strong> changes needed: </p>
+      </div>
 
-    </nav>
+      <nav>
+        <label for="fname">Name: </label><input type="text" id="name">
+        <label for="age">Age: </label><input type="text" id="age">
+        <label for="email">Email: </label><input type="text" id="email">
+        <label for="username">Username: </label><input type="text" id="username">
+        <label for="password">Password: </label><input type="password" id="password">
+        <label for="location">Location: </label><input type="text" id="location">
+        <label for="admin">Admin Code: </label><input type="text" id="admin">
+        <div id="center"><button onclick="updateAccount()" id="createAccount">Update Account</button></div>
+      </nav>
+
+    </main>
+
+
     <script src="https://mysqljs.com/mysql.js" type="text/javascript"></script>
     <script>
       let idBuyers = "";

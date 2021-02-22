@@ -1,50 +1,70 @@
 ﻿<!DOCTYPE html>
-<!-- Write your comments here -->
 <html>
+
   <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width">
-    <title>Local Vendor Locator</title>
+    <title>Around The Corner</title>
     <link href="style.css" rel="stylesheet" type="text/css" />
   </head>
 
-
   <body>
-    <div id="wrapper">
 
     <header>
-    <a href="index.html">
-        <h1>Around The Corner</h1>
-      </a>
+    	<img src="toplogo.png">
+    	<div class="navigation">
+    		<table>
+    			<tr>
+    				<td><a href="create_account.html">Create Account</a></td>
+    			</tr>
+    			<tr>
+    				<td><a href="VendorBio.html">Create Vendor Account</a></td>
+    			</tr>
+    			<tr>
+    				<td><a href="delete_account.html">Delete Account</a></td>
+    			</tr>
+    			<tr>
+    				<td><a href="login.html">Login</a></td>
+    			</tr>
+    			<tr>
+    				<td><a href="edit_user.html">Edit A User Account</a></td>
+    			</tr>
+    			<tr>
+    				<td><a href="addProduct.html">Add Product</a></td>
+    			</tr>
+    			<tr>
+    				<td><a href="login_vendor.html">Log in as Vendor</a></td>
+    			</tr>
+    		</table>
+    	</div>
     </header>
 
-    <div id="homehero"></div>
+    <main>
+    	<div class="title">
+    		<h1>Around The Corner</h1>
+    		<p id="description_one"> We are here to bring you the finest and freshest stuff that is just <strong>Aroung The Corner</strong></p>
+    		<div id="description_two">
+    			<p>Made for you</p>
+    			<p>By your neighbors</p>
+    		</div>
+    	</div>
 
-    <nav>
-      <h3>Choose an option below:</h3>
-      <ul>
-          <li><a href="create_account.html">Create Account</a></li>
-          <li><a href="VendorBio.html">Create Vendor Account</a></li>
-          <li><a href="delete_account.html">Delete Account</a></li>
-          <li><a href="login.html">Log in</a></li>
-          <li><a href="edit_user.html">Edit A User Account</a></li>
-          <li><a href="addProduct.html">Add Product</a></li>
-          <li><a href="login_vendor.html">Log in as Vendor</a></li>
+    	<img id="logo" src="logoEat.png">
 
-      </ul>
-    </nav>
-    <div id="items">
-    </div> 
-    <br>
-    <div id="map"></div>
-    <script
-      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCn6Ge7JQ-51X6NMKRex4LnWLUvJLEFJnE&callback=initMap&libraries=&v=weekly"
-      async
-    ></script>
+    	<div class="bottom_description">
+    		<h2>Find the vendors nearest to you for whatever you are interested in!</h2>
+    	</div>
+
+    	<div id="map"></div>
+
+    </main>
+
+    
+
+    
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCn6Ge7JQ-51X6NMKRex4LnWLUvJLEFJnE&callback=initMap&libraries=&v=weekly"
+      async></script>
+
     <script src="map.js"></script>
 
-    </div>
-      </body>
-
-
+    
+ 	</body>
 </html>
