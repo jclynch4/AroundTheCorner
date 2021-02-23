@@ -19,10 +19,10 @@
         MySql.Execute("107.180.1.16", "group62021", "2021group6", "group62021", sqlStmt, function (data){
                for (i=0; i<data.Result.length; i++) {
                   
-                var select = document.getElementById("listbox")
+                var listbox = document.createElement(select);
                 var option = data.Result[i].name;
-                select.add(option);  
-                document.getElementById("a").appendChild(select);
+                listbox.add(option);  
+                document.getElementById("a").appendChild(listbox);
         }
         }
         )
@@ -30,21 +30,52 @@
     </script>
   </head>
   <body>
-  
-    <div id="wrapper">
+
     <header>
+      <img src="toplogo.png">
+      <div class="navigation">
+        <table>
+          <tr>
+              <td><a href="index.html">Home</a></td>
+          </tr>
+          <tr>
+              <td><a href="create_account.html">Create Account</a></td>
+          </tr>
+          <tr>
+              <td><a href="VendorBio.html">Create Vendor Account</a></td>
+          </tr>
+          <tr>
+              <td><a href="delete_account.html">Delete Account</a></td>
+          </tr>
+          <tr>
+              <td><a href="login.html">Login</a></td>
+          </tr>
+          <tr>
+              <td><a href="edit_user.html">Edit A User Account</a></td>
+          </tr>
+          <tr>
+              <td><a href="addProduct.html">Add Product</a></td>
+          </tr>
+          <tr>
+              <td><a href="login_vendor.html">Log in as Vendor</a></td>
+          </tr>
+        </table>
+      </div>
+    </header>
+  
+    <main>
+    <div id="wrapper">
       <a href="index.html">
         <h1>Around The Corner</h1>
       </a>
-    </header>
+    </div>
+    </main>
 
-      <label for="name">Product Name: </label><input type="text" id="name" placeholder="Search">  
-      <button onclick="searchProduct()" id="search">Search</button>
+
+    <label for="name">Product Name: </label><input type="text" id="name" placeholder="Search">  
+    <button onclick="searchProduct()" id="search">Search</button>
 
     <div id="a">
-      <select id="listbox" size="10" style="width:400px">
-      </select>
-    </div>
-    
+    </div>    
   </body>
 </html>
