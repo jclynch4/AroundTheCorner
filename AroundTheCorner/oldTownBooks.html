@@ -80,6 +80,32 @@
             )
             
          };
+      function addToCart(item){
+      let idBuyers = "";
+        var allcookies = document.cookie;
+        console.log("All Cookies : " + allcookies );
+               
+       // Get all the cookies pairs in an array
+       cookiearray = allcookies.split(';');
+       console.log(cookiearray);
+       // Now take key value pair out of this array
+       for(var i=0; i<cookiearray.length; i++) {
+          name = cookiearray[i].split('=')[0];
+          value = cookiearray[i].split('=')[1];
+          console.log("Key is : " + name + " and Value is : " + value);
+          idBuyers = value;
+        }
+
+      let sqlStmt = "INSERT INTO Carts (idBuyers, idProducts, quantity) VALUES ("+idBuyers+", "+item+", '1');"
+        MySql.Execute( 
+          "107.180.1.16", 
+          "group62021",
+          "2021group6",
+          "group62021",
+
+          sqlStmt
+          )
+    }
     </script>
   </head>
 
@@ -92,6 +118,9 @@
         <img src="toplogo.png">
         <div class="navigation">
           <table>
+            <tr>
+              <td><a href="cart.html">Cart</a></td>
+            </tr>
             <tr>
               <td><a href="index.html">Home</a></td>
             </tr>
@@ -119,8 +148,8 @@
 				
       </tr>
       <tr>
-        <td><button>Add to cart</button></td>
-        <td><button>Add to cart</button></td>
+        <td><button onclick="addToCart('9')">Add to cart</button></td>
+        <td><button onclick="addToCart('10')">Add to cart</button></td>
         
       </tr>
 		</table>
