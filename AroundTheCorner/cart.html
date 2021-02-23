@@ -51,8 +51,8 @@
           console.log("Key is : " + name + " and Value is : " + value);
           idBuyers = value;
         } 
-        let sqlStmt = "SELECT * FROM Carts WHERE idBuyers = "+idBuyers;
-        let prdStmt = "SELECT * FROM Products WHERE idProducts = '7' OR '8'";
+        let sqlStmt = "SELECT idProducts FROM Carts WHERE idBuyers = "+idBuyers;
+        let products = []
             MySql.Execute( 
               "107.180.1.16", 
               "group62021",
@@ -65,18 +65,26 @@
 
                 for (i=0; i<data.Result.length; i++) {
                   
-                  var p = document.createElement("p");
+                  products.push(data.Result[i].idProducts);
 
-                  p.innerHTML = data.Result[i].bio+ "<br>" + data.Result[i].location
-                  + "<br>" + data.Result[i].hours + "<br>" + data.Result[i].phone+ "<br>" + data.Result[i].website ;
                   
-                  document.getElementById("vendor").appendChild(p);
-                  //fillProducts();
               }
+              fillProducts();
           }
               )
-            /*
+            
             function fillProducts(){
+              let prdStmt = "SELECT * FROM Products WHERE idProducts = ";
+              for(var i=0; i<products.length; i++){
+                if (i == 0) {
+                  prdStmt += products[i];
+                }
+                else{
+                prdStmt += " OR "+ products[i];
+              }
+              console.log(products);
+              }
+              console.log(prdStmt);
             MySql.Execute(
               "107.180.1.16", 
               "group62021",
@@ -94,10 +102,10 @@
                 pic.src = String(data.Result[i].image_url);
                 prd.appendChild(pic);
 
-                but = document.createElement("button");
+                /*but = document.createElement("button");
                 but.id = data.Result[i].idProducts;
                 but.onclick = "hello()"
-                prd.appendChild(but);
+                prd.appendChild(but);*/
 
                 document.getElementById("products").appendChild(prd);
 
@@ -117,34 +125,9 @@
             	console.log("hello")
             }*/
 
-            
+         }   
          };
-    function addToCart(item){
-    	let idBuyers = "";
-        var allcookies = document.cookie;
-        console.log("All Cookies : " + allcookies );
-               
-       // Get all the cookies pairs in an array
-       cookiearray = allcookies.split(';');
-       console.log(cookiearray);
-       // Now take key value pair out of this array
-       for(var i=0; i<cookiearray.length; i++) {
-          name = cookiearray[i].split('=')[0];
-          value = cookiearray[i].split('=')[1];
-          console.log("Key is : " + name + " and Value is : " + value);
-          idBuyers = value;
-        }
-
-    	let sqlStmt = "INSERT INTO Carts (idBuyers, idProducts, quantity) VALUES ("+idBuyers+", "+item+", '1');"
-        MySql.Execute( 
-          "107.180.1.16", 
-          "group62021",
-          "2021group6",
-          "group62021",
-
-          sqlStmt
-          )
-    }
+    
     </script>
   </head>
 
@@ -164,32 +147,10 @@
         </div>
       </header>
     <div id="body">
-    <h2>Buffalo Exchange</h2>
-    <div id="vendor"></div>
+    <h2>Products</h2>
     <div id="products"></div>
     <div id = 'd1'>
-		<h2>Products</h2>
-		<table>
-			<tr><td><b>Pink Shirt</b></td><td><b>Travel Pants</b></td></tr>
-			<tr><td>Description: A lovely pink T-shirt.</td><td>Description: Look good while travelling! </td></tr>
-			<tr><td><img src="shirt.png" alt = 'Pink Shirt' class="img"></td>
-			    <td><img src="pants.png" alt = 'Travel Pants' class="img"></td>
-			    </tr>
-			<tr><td>Size M.
-			    </td>
-			    <td>Size 6. </td>
-			    </tr>
-			<tr>
-				<td>Price: <b>$12</b></td>
-				<td>Price: <b>$14</b></td>
-				
-      </tr>
-      <tr>
-        <td><button onclick="addToCart('7')">Add to cart</button></td>
-        <td><button onclick="addToCart('8')">Add to cart</button></td>
-        
-      </tr>
-		</table>
+		
     </div>
     </div>
   </body>
