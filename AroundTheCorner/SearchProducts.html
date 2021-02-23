@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html>
   <head>
     <meta charset="utf-8">
@@ -14,18 +14,16 @@
 
         let sqlStmt = "SELECT * FROM Products WHERE name like \"" + name +"\";"
        
-        console.log(sqlStmt);
-        
+        var listbox = document.createElement("select");        
         MySql.Execute("107.180.1.16", "group62021", "2021group6", "group62021", sqlStmt, function (data){
-               for (i=0; i<data.Result.length; i++) {
-                  
-                var listbox = document.createElement(select);
+               for (i=0; i<data.Result.length; i++) {   
                 var option = data.Result[i].name;
                 listbox.add(option);  
-                document.getElementById("a").appendChild(listbox);
+
         }
         }
         )
+        document.getElementById("a").appendChild(listbox);
     }
     </script>
   </head>
