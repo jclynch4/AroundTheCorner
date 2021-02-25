@@ -123,18 +123,11 @@ main {
 
 }
 
+header img {
+	height: 170px;
+	width: 170px;
+}
 
-
-
-	
-	#wrapper {
-		width: 90%;
-		background: white;
-		margin: auto;
-		border: 1px solid darkblue;
-		box-shadow: 10px 10px 10px #333333;
-		height: 1050px;
-	}
 	
 	
 	
