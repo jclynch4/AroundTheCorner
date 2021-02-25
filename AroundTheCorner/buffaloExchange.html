@@ -57,11 +57,11 @@
                   + "<br>" + data.Result[i].hours + "<br>" + data.Result[i].phone+ "<br>" + data.Result[i].website ;
                   
                   document.getElementById("vendor").appendChild(p);
-                  //fillProducts();
+                  fillProducts();
               }
           }
               )
-            /*
+            
             function fillProducts(){
             MySql.Execute(
               "107.180.1.16", 
@@ -82,7 +82,8 @@
 
                 but = document.createElement("button");
                 but.id = data.Result[i].idProducts;
-                but.onclick = "hello()"
+                but.onclick = addToCart;
+                console.log(but.onclick);
                 prd.appendChild(but);
 
                 document.getElementById("products").appendChild(prd);
@@ -97,12 +98,9 @@
                   opt.text = (data.Result[i].MenuItem);
                   opt.value = (data.Result[i].Price);
                   dropdown.options.add(opt);
-                
+                */
               }
-            function hello(){
-            	console.log("hello")
-            }*/
-
+            
             
          };
     function addToCart(item){
@@ -131,6 +129,7 @@
           sqlStmt
           )
     }
+
     </script>
   </head>
 
